@@ -1,7 +1,7 @@
 # Security-Detect
 
 Sistema de deteccion y neutralizacion de software malicioso. Su objetivo es
-proteger los sistemas de archivos: identifica contenido potencialmente danino
+proteger los sistemas de archivos: identifica contenido potencialmente dañino
 en archivos y aplicaciones, permite aislarlo, sanearlo de forma quirurgica
 (NOP sobre las rutas de codigo malicioso localizadas) y verificar la integridad
 del resultado, de modo que un equipo pueda volver a utilizarse sin el riesgo
