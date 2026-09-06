@@ -1,0 +1,19 @@
+# Entornos
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Builds PyInstaller
+build/
+dist/
+*.spec
+
+# Tests y cobertura
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Reportes generados por el propio análisis
+temp_*/
+final_package_*/

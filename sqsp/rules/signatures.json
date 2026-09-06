@@ -1,0 +1,69 @@
+{
+  "description": "Reglas activas del motor de Capa 4 (SQS). Condiciones evaluadas sobre el reporte consolidado (static_analysis.json / dynamic_report.json / manifest.json).",
+  "rules": [
+    {
+      "name": "Remote_Download_Indicator",
+      "description": "Presencia de cadenas de descarga remota (.DownloadFile / URL) en el binario.",
+      "severity": "high",
+      "reference": "MITRE ATT&CK T1105",
+      "condition": {
+        "field": "static_analysis.suspicious_strings_found",
+        "op": "contains",
+        "value": "Descarga remota"
+      }
+    },
+    {
+      "name": "Process_Injection_API",
+      "description": "Importa la API de inyección de hilos CreateRemoteThread.",
+      "severity": "high",
+      "reference": "MITRE ATT&CK T1055",
+      "condition": {
+        "field": "static_analysis.suspicious_imports",
+        "op": "contains",
+        "value": "CreateRemoteThread"
+      }
+    },
+    {
+      "name": "AntiAnalysis_Import",
+      "description": "APIs anti-depuración/análisis (IsDebuggerPresent y similares).",
+      "severity": "medium",
+      "reference": "MITRE ATT&CK T1622",
+      "condition": {
+        "field": "static_analysis.suspicious_imports",
+        "op": "contains",
+        "value": "IsDebuggerPresent"
+      }
+    },
+    {
+      "name": "Persistence_String",
+      "description": "Indicadores de persistencia (schtasks / registro) en strings.",
+      "severity": "medium",
+      "reference": "MITRE ATT&CK T1053",
+      "condition": {
+        "field": "static_analysis.suspicious_strings_found",
+        "op": "contains",
+        "value": "Persistencia"
+      }
+    },
+    {
+      "name": "YARA_Signature_Match",
+      "description": "Al menos una firma YARA de rules/*.yara coincide con el binario.",
+      "severity": "high",
+      "condition": {
+        "field": "static_analysis.yara_matches",
+        "op": "exists"
+      }
+    },
+    {
+      "name": "Lateral_Movement_Indicator",
+      "description": "Strings de administración remota/netstat en el binario.",
+      "severity": "medium",
+      "reference": "MITRE ATT&CK T1021",
+      "condition": {
+        "field": "static_analysis.suspicious_strings_found",
+        "op": "contains",
+        "value": "netstat"
+      }
+    }
+  ]
+}

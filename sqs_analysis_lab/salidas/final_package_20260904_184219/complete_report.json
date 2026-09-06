@@ -1,0 +1,559 @@
+{
+  "timestamp": "2026-09-04T18:42:19.660610",
+  "input_file": "C:\\AI-Security\\sqs_analysis_lab\\muestras\\miner.exe",
+  "output_directory": "C:\\AI-Security\\sqs_analysis_lab\\salidas\\final_package_20260904_184219",
+  "processing_reports": {
+    "classification": {
+      "timestamp": "2026-09-04T18:42:19.584055",
+      "temp_directory": "C:\\AI-Security\\sqs_analysis_lab\\salidas\\temp_20260904_184219_2",
+      "verdict": "malicioso",
+      "zone": "malicioso",
+      "risk_score": 15,
+      "threats_found": [
+        "3 string(s) sospechoso(s)",
+        "3 import(s) sospechoso(s)",
+        "No se pudo ejecutar en sandbox: [WinError 193] %1 no es una aplicaci\u00f3n Win32 v\u00e1lida",
+        "Regla 'Process_Injection_API' (severidad high)",
+        "Regla 'Lateral_Movement_Indicator' (severidad medium)"
+      ],
+      "notes": [],
+      "weights": {
+        "executable": 2,
+        "sandbox_error": 5,
+        "network_activity": 3,
+        "filesystem_change": 3,
+        "suspicious_string": 1,
+        "suspicious_import": 2,
+        "packed_high_entropy": 3,
+        "installer_packed": 2,
+        "known_malicious": 10
+      },
+      "thresholds": {
+        "malicious": 10,
+        "suspicious": 5
+      },
+      "rules_matched": [
+        "Process_Injection_API",
+        "Lateral_Movement_Indicator"
+      ],
+      "rules_risk_added": 5,
+      "static_analysis": {
+        "timestamp": "2026-09-04T18:42:19.548529",
+        "file_path": "C:\\AI-Security\\sqs_analysis_lab\\muestras\\miner.exe",
+        "mime_type": "application/x-dosexec",
+        "size_bytes": 2193,
+        "is_executable": true,
+        "permissions": "777",
+        "static_analysis": {
+          "file_signature": "PE",
+          "architecture": "x86 (i386)",
+          "compiled_with": "PE32",
+          "sections": [
+            {
+              "name": ".idata",
+              "virtual_size": 512,
+              "virtual_address": "0x1000",
+              "size_of_raw_data": 512,
+              "pointer_to_raw_data": 512,
+              "offset": 512,
+              "size": 512
+            }
+          ],
+          "entropy": 1.13,
+          "max_block_entropy": 1.13,
+          "entropy_by_section": [
+            {
+              "name": ".idata",
+              "offset": 512,
+              "size": 512,
+              "entropy": 1.32
+            }
+          ],
+          "high_entropy_sections": [],
+          "strings_count": 10,
+          "top_strings": [
+            ".idata",
+            "KERNEL32.dll",
+            "CreateRemoteThread",
+            "UrlDownloadToFile",
+            "LoadLibraryA",
+            "[STRINGS]",
+            "XMRig 6.9 fork",
+            "stratum+tcp://pool.gamecrack.example:4444",
+            "http://update.gamecrack.example/xmrig.exe",
+            "netstat -an | findstr ESTABLISHED"
+          ],
+          "suspicious_strings_found": [
+            {
+              "string": "CreateRemoteThread",
+              "offset": 642,
+              "pattern": "Inyecci\u00f3n de hilos"
+            },
+            {
+              "string": "http://update.gamecrack.example/xmrig.exe",
+              "offset": 2116,
+              "pattern": "URL (http/https)"
+            },
+            {
+              "string": "netstat -an | findstr ESTABLISHED",
+              "offset": 2158,
+              "pattern": "netstat"
+            }
+          ],
+          "imports": [
+            {
+              "dll": "KERNEL32.dll",
+              "functions": [
+                "CreateRemoteThread",
+                "UrlDownloadToFile",
+                "LoadLibraryA"
+              ],
+              "ordinals": 0
+            },
+            {
+              "dll": "dll_1",
+              "functions": [],
+              "ordinals": 0
+            }
+          ],
+          "suspicious_imports": [
+            {
+              "dll": "KERNEL32.dll",
+              "function": "CreateRemoteThread",
+              "reason": "inyecci\u00f3n de hilos"
+            },
+            {
+              "dll": "KERNEL32.dll",
+              "function": "UrlDownloadToFile",
+              "reason": "descarga remota"
+            },
+            {
+              "dll": "KERNEL32.dll",
+              "function": "LoadLibraryA",
+              "reason": "carga din\u00e1mica de librer\u00edas"
+            }
+          ],
+          "packer_detected": [],
+          "embedded_pe_candidates": [],
+          "pefile": null,
+          "pefile_error": null,
+          "yara_matches": [],
+          "yara_error": null
+        },
+        "components": [
+          {
+            "id": "main",
+            "name": "miner.exe",
+            "kind": "PE",
+            "offset": 0,
+            "size": 2193,
+            "entropy": 1.13,
+            "suspicion_score": 5,
+            "reasons": [
+              "es ejecutable",
+              "3 string(s) sospechosos",
+              "3 import(s) sospechosos"
+            ]
+          }
+        ]
+      },
+      "dynamic_analysis": {
+        "timestamp": "2026-09-04T18:42:19.550541",
+        "file_to_execute": "C:\\AI-Security\\sqs_analysis_lab\\muestras\\miner.exe",
+        "sandbox_id": "sandbox_24194109",
+        "execution_log": [],
+        "network_activity": [],
+        "filesystem_changes": [],
+        "error": "No se pudo ejecutar en sandbox: [WinError 193] %1 no es una aplicaci\u00f3n Win32 v\u00e1lida"
+      },
+      "manifest": {
+        "timestamp": "2026-09-04T18:42:19.546530",
+        "input_file": "C:\\AI-Security\\sqs_analysis_lab\\muestras\\miner.exe",
+        "size_bytes": 2193,
+        "file_hash": "5fe2c2c9e686bb99679de9b69403b7dc224f074469a54877dee06d9501cdbd2f",
+        "magic_type": "PE",
+        "reputation": {
+          "status": "unknown",
+          "matched": null
+        },
+        "quarantine": {
+          "path": "C:\\AI-Security\\sqs_analysis_lab\\salidas\\temp_20260904_184219_2\\quarantine\\miner.exe",
+          "read_only": true
+        },
+        "temp_directory": "C:\\AI-Security\\sqs_analysis_lab\\salidas\\temp_20260904_184219_2",
+        "status": "ingested"
+      }
+    },
+    "surgery": {
+      "timestamp": "2026-09-04T18:42:19.606054",
+      "original_file": "C:\\AI-Security\\sqs_analysis_lab\\muestras\\miner.exe",
+      "sanitized_file": "C:\\AI-Security\\sqs_analysis_lab\\salidas\\temp_20260904_184219_2\\sanitized_miner.exe",
+      "backup_file": "C:\\AI-Security\\sqs_analysis_lab\\salidas\\temp_20260904_184219_2\\backup\\miner.exe",
+      "actions_taken": [
+        "Backup inmutable creado: C:\\AI-Security\\sqs_analysis_lab\\salidas\\temp_20260904_184219_2\\backup\\miner.exe",
+        "NOP aplicado en 3 offset(s) (difusi\u00f3n en surgery_log)"
+      ],
+      "surgery_status": "completed",
+      "classification": {
+        "timestamp": "2026-09-04T18:42:19.584055",
+        "temp_directory": "C:\\AI-Security\\sqs_analysis_lab\\salidas\\temp_20260904_184219_2",
+        "verdict": "malicioso",
+        "zone": "malicioso",
+        "risk_score": 15,
+        "threats_found": [
+          "3 string(s) sospechoso(s)",
+          "3 import(s) sospechoso(s)",
+          "No se pudo ejecutar en sandbox: [WinError 193] %1 no es una aplicaci\u00f3n Win32 v\u00e1lida",
+          "Regla 'Process_Injection_API' (severidad high)",
+          "Regla 'Lateral_Movement_Indicator' (severidad medium)"
+        ],
+        "notes": [],
+        "weights": {
+          "executable": 2,
+          "sandbox_error": 5,
+          "network_activity": 3,
+          "filesystem_change": 3,
+          "suspicious_string": 1,
+          "suspicious_import": 2,
+          "packed_high_entropy": 3,
+          "installer_packed": 2,
+          "known_malicious": 10
+        },
+        "thresholds": {
+          "malicious": 10,
+          "suspicious": 5
+        },
+        "rules_matched": [
+          "Process_Injection_API",
+          "Lateral_Movement_Indicator"
+        ],
+        "rules_risk_added": 5,
+        "static_analysis": {
+          "timestamp": "2026-09-04T18:42:19.548529",
+          "file_path": "C:\\AI-Security\\sqs_analysis_lab\\muestras\\miner.exe",
+          "mime_type": "application/x-dosexec",
+          "size_bytes": 2193,
+          "is_executable": true,
+          "permissions": "777",
+          "static_analysis": {
+            "file_signature": "PE",
+            "architecture": "x86 (i386)",
+            "compiled_with": "PE32",
+            "sections": [
+              {
+                "name": ".idata",
+                "virtual_size": 512,
+                "virtual_address": "0x1000",
+                "size_of_raw_data": 512,
+                "pointer_to_raw_data": 512,
+                "offset": 512,
+                "size": 512
+              }
+            ],
+            "entropy": 1.13,
+            "max_block_entropy": 1.13,
+            "entropy_by_section": [
+              {
+                "name": ".idata",
+                "offset": 512,
+                "size": 512,
+                "entropy": 1.32
+              }
+            ],
+            "high_entropy_sections": [],
+            "strings_count": 10,
+            "top_strings": [
+              ".idata",
+              "KERNEL32.dll",
+              "CreateRemoteThread",
+              "UrlDownloadToFile",
+              "LoadLibraryA",
+              "[STRINGS]",
+              "XMRig 6.9 fork",
+              "stratum+tcp://pool.gamecrack.example:4444",
+              "http://update.gamecrack.example/xmrig.exe",
+              "netstat -an | findstr ESTABLISHED"
+            ],
+            "suspicious_strings_found": [
+              {
+                "string": "CreateRemoteThread",
+                "offset": 642,
+                "pattern": "Inyecci\u00f3n de hilos"
+              },
+              {
+                "string": "http://update.gamecrack.example/xmrig.exe",
+                "offset": 2116,
+                "pattern": "URL (http/https)"
+              },
+              {
+                "string": "netstat -an | findstr ESTABLISHED",
+                "offset": 2158,
+                "pattern": "netstat"
+              }
+            ],
+            "imports": [
+              {
+                "dll": "KERNEL32.dll",
+                "functions": [
+                  "CreateRemoteThread",
+                  "UrlDownloadToFile",
+                  "LoadLibraryA"
+                ],
+                "ordinals": 0
+              },
+              {
+                "dll": "dll_1",
+                "functions": [],
+                "ordinals": 0
+              }
+            ],
+            "suspicious_imports": [
+              {
+                "dll": "KERNEL32.dll",
+                "function": "CreateRemoteThread",
+                "reason": "inyecci\u00f3n de hilos"
+              },
+              {
+                "dll": "KERNEL32.dll",
+                "function": "UrlDownloadToFile",
+                "reason": "descarga remota"
+              },
+              {
+                "dll": "KERNEL32.dll",
+                "function": "LoadLibraryA",
+                "reason": "carga din\u00e1mica de librer\u00edas"
+              }
+            ],
+            "packer_detected": [],
+            "embedded_pe_candidates": [],
+            "pefile": null,
+            "pefile_error": null,
+            "yara_matches": [],
+            "yara_error": null
+          },
+          "components": [
+            {
+              "id": "main",
+              "name": "miner.exe",
+              "kind": "PE",
+              "offset": 0,
+              "size": 2193,
+              "entropy": 1.13,
+              "suspicion_score": 5,
+              "reasons": [
+                "es ejecutable",
+                "3 string(s) sospechosos",
+                "3 import(s) sospechosos"
+              ]
+            }
+          ]
+        },
+        "dynamic_analysis": {
+          "timestamp": "2026-09-04T18:42:19.550541",
+          "file_to_execute": "C:\\AI-Security\\sqs_analysis_lab\\muestras\\miner.exe",
+          "sandbox_id": "sandbox_24194109",
+          "execution_log": [],
+          "network_activity": [],
+          "filesystem_changes": [],
+          "error": "No se pudo ejecutar en sandbox: [WinError 193] %1 no es una aplicaci\u00f3n Win32 v\u00e1lida"
+        },
+        "manifest": {
+          "timestamp": "2026-09-04T18:42:19.546530",
+          "input_file": "C:\\AI-Security\\sqs_analysis_lab\\muestras\\miner.exe",
+          "size_bytes": 2193,
+          "file_hash": "5fe2c2c9e686bb99679de9b69403b7dc224f074469a54877dee06d9501cdbd2f",
+          "magic_type": "PE",
+          "reputation": {
+            "status": "unknown",
+            "matched": null
+          },
+          "quarantine": {
+            "path": "C:\\AI-Security\\sqs_analysis_lab\\salidas\\temp_20260904_184219_2\\quarantine\\miner.exe",
+            "read_only": true
+          },
+          "temp_directory": "C:\\AI-Security\\sqs_analysis_lab\\salidas\\temp_20260904_184219_2",
+          "status": "ingested"
+        }
+      }
+    },
+    "verification": {
+      "timestamp": "2026-09-04T18:42:19.618074",
+      "original_file_hash": "5fe2c2c9e686bb99679de9b69403b7dc224f074469a54877dee06d9501cdbd2f",
+      "sanitized_file_path": "C:\\AI-Security\\sqs_analysis_lab\\salidas\\temp_20260904_184219_2\\sanitized_miner.exe",
+      "sanitized_file_hash": "e6a18e81cb3857a26f6b1ac5b9ccda36d22925e53290d0fdcbf1c7b38eeb9f5b",
+      "verification_status": "failed",
+      "functional_tests": [
+        {
+          "test_name": "RerunInSandbox",
+          "status": "failed",
+          "return_code": null,
+          "output": "No se pudo ejecutar en sandbox: [WinError 193] %1 no es una aplicaci\u00f3n Win32 v\u00e1lida",
+          "duration_seconds": 0.016,
+          "reason": "No se pudo ejecutar en sandbox: [WinError 193] %1 no es una aplicaci\u00f3n Win32 v\u00e1lida"
+        }
+      ],
+      "rerun_dynamic_report": "C:\\AI-Security\\sqs_analysis_lab\\salidas\\temp_20260904_184219_2\\rerun_dynamic_report.json",
+      "differences_detected": true,
+      "compatibility_report": {},
+      "malicious_behavior_removed": false
+    },
+    "verdict_map": {
+      "timestamp": "2026-09-04T18:42:19.584055",
+      "temp_directory": "C:\\AI-Security\\sqs_analysis_lab\\salidas\\temp_20260904_184219_2",
+      "verdict": "malicioso",
+      "zone": "malicioso",
+      "risk_score": 15,
+      "decision": null,
+      "notes": [],
+      "components": [
+        {
+          "id": "main",
+          "name": "miner.exe",
+          "kind": "PE",
+          "offset": 0,
+          "verdict": "malicioso",
+          "action": "patch",
+          "patch_offsets": [
+            {
+              "offset": 642,
+              "size": 18,
+              "note": "Inyecci\u00f3n de hilos",
+              "string": "CreateRemoteThread"
+            },
+            {
+              "offset": 2116,
+              "size": 41,
+              "note": "URL (http/https)",
+              "string": "http://update.gamecrack.example/xmrig.ex"
+            },
+            {
+              "offset": 2158,
+              "size": 33,
+              "note": "netstat",
+              "string": "netstat -an | findstr ESTABLISHED"
+            }
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "type": "patch",
+          "offset": 642,
+          "size": 18,
+          "note": "Inyecci\u00f3n de hilos",
+          "string": "CreateRemoteThread"
+        },
+        {
+          "type": "patch",
+          "offset": 2116,
+          "size": 41,
+          "note": "URL (http/https)",
+          "string": "http://update.gamecrack.example/xmrig.ex"
+        },
+        {
+          "type": "patch",
+          "offset": 2158,
+          "size": 33,
+          "note": "netstat",
+          "string": "netstat -an | findstr ESTABLISHED"
+        }
+      ]
+    },
+    "surgery_log": {
+      "timestamp": "2026-09-04T18:42:19.606054",
+      "original_file": "C:\\AI-Security\\sqs_analysis_lab\\muestras\\miner.exe",
+      "backup_file": "C:\\AI-Security\\sqs_analysis_lab\\salidas\\temp_20260904_184219_2\\backup\\miner.exe",
+      "sanitized_file": "C:\\AI-Security\\sqs_analysis_lab\\salidas\\temp_20260904_184219_2\\sanitized_miner.exe",
+      "patches": [
+        {
+          "offset": 642,
+          "size": 18,
+          "original_hex": "43726561746552656d6f7465546872656164",
+          "new_hex": "909090909090909090909090909090909090",
+          "type": "nop_patch",
+          "note": "Inyecci\u00f3n de hilos",
+          "string": "CreateRemoteThread"
+        },
+        {
+          "offset": 2116,
+          "size": 41,
+          "original_hex": "687474703a2f2f7570646174652e67616d65637261636b2e6578616d706c652f786d7269672e657865",
+          "new_hex": "9090909090909090909090909090909090909090909090909090909090909090909090909090909090",
+          "type": "nop_patch",
+          "note": "URL (http/https)",
+          "string": "http://update.gamecrack.example/xmrig.ex"
+        },
+        {
+          "offset": 2158,
+          "size": 33,
+          "original_hex": "6e657473746174202d616e207c2066696e647374722045535441424c4953484544",
+          "new_hex": "909090909090909090909090909090909090909090909090909090909090909090",
+          "type": "nop_patch",
+          "note": "netstat",
+          "string": "netstat -an | findstr ESTABLISHED"
+        }
+      ],
+      "removed_components": [],
+      "surgery_status": "completed"
+    },
+    "manifest": {
+      "timestamp": "2026-09-04T18:42:19.546530",
+      "input_file": "C:\\AI-Security\\sqs_analysis_lab\\muestras\\miner.exe",
+      "size_bytes": 2193,
+      "file_hash": "5fe2c2c9e686bb99679de9b69403b7dc224f074469a54877dee06d9501cdbd2f",
+      "magic_type": "PE",
+      "reputation": {
+        "status": "unknown",
+        "matched": null
+      },
+      "quarantine": {
+        "path": "C:\\AI-Security\\sqs_analysis_lab\\salidas\\temp_20260904_184219_2\\quarantine\\miner.exe",
+        "read_only": true
+      },
+      "temp_directory": "C:\\AI-Security\\sqs_analysis_lab\\salidas\\temp_20260904_184219_2",
+      "status": "ingested"
+    },
+    "final_report": {
+      "timestamp": "2026-09-04T18:42:19.633063",
+      "input_file": "C:\\AI-Security\\sqs_analysis_lab\\muestras\\miner.exe",
+      "temp_directory": "C:\\AI-Security\\sqs_analysis_lab\\salidas\\temp_20260904_184219_2",
+      "verdict": "malicioso",
+      "zone": "malicioso",
+      "risk_score": 15,
+      "surgery_status": "completed",
+      "verification_status": "failed",
+      "malicious_behavior_removed": false,
+      "functionality_loss_risk": "alta",
+      "summary": [
+        "Archivo original: C:\\AI-Security\\sqs_analysis_lab\\muestras\\miner.exe",
+        "Veredicto: malicioso (zona malicioso, riesgo 15)",
+        "Estado de cirug\u00eda: completed",
+        "Verificaci\u00f3n funcional: failed",
+        "Riesgo de p\u00e9rdida funcional: alta"
+      ]
+    },
+    "rules_report": {
+      "timestamp": "2026-09-04T18:42:19.584055",
+      "rules_evaluated": 6,
+      "risk_added": 5,
+      "matched": [
+        {
+          "name": "Process_Injection_API",
+          "severity": "high",
+          "base_add": 3,
+          "description": "Importa la API de inyecci\u00f3n de hilos CreateRemoteThread.",
+          "reference": "MITRE ATT&CK T1055"
+        },
+        {
+          "name": "Lateral_Movement_Indicator",
+          "severity": "medium",
+          "base_add": 2,
+          "description": "Strings de administraci\u00f3n remota/netstat en el binario.",
+          "reference": "MITRE ATT&CK T1021"
+        }
+      ],
+      "error": null
+    }
+  },
+  "final_status": "completed"
+}

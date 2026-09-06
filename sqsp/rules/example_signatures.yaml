@@ -1,0 +1,14 @@
+# Plugin de reglas SQS (replicado de signatures.json en formato YAML).
+#
+# Las reglas activas se cargan desde rules/*.json y rules/*.yaml. Los archivos
+# example_* se ignoran; renombra este archivo a signatures.yaml e instala
+# PyYAML para usar reglas en YAML.
+rules:
+  - name: "Lateral_Movement_Indicator"
+    description: "Strings de administración remota/netstat en el binario."
+    severity: "medium"
+    reference: "MITRE ATT&CK T1021"
+    condition:
+      field: "static_analysis.suspicious_strings_found"
+      op: "contains"
+      value: "netstat"

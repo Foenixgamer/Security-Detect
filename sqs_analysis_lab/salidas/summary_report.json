@@ -1,0 +1,111 @@
+{
+  "pipeline": {
+    "version": "1.0",
+    "timestamp": "2026-09-04_184219",
+    "total_samples": 5,
+    "malicious_count": 4,
+    "suspicious_count": 1,
+    "clean_count": 0
+  },
+  "samples": [
+    {
+      "filename": "activador.txt",
+      "status": "sospechoso",
+      "risk_level": 7,
+      "actions_taken": [
+        "no requerida"
+      ],
+      "final_file": null,
+      "checks": {
+        "sanitized_exists": false,
+        "backup_exists": false,
+        "quarantine_exists": true,
+        "backup_read_only": false,
+        "classification_json": true,
+        "final_report_json": true,
+        "surgery_report_json": true,
+        "integrity_verification_json": true
+      }
+    },
+    {
+      "filename": "game_crack.exe",
+      "status": "cleaned",
+      "risk_level": 19,
+      "actions_taken": [
+        "backup",
+        "NOP_patch"
+      ],
+      "final_file": "sanitized_game_crack.exe",
+      "checks": {
+        "sanitized_exists": true,
+        "backup_exists": true,
+        "quarantine_exists": true,
+        "backup_read_only": true,
+        "classification_json": true,
+        "final_report_json": true,
+        "surgery_report_json": true,
+        "integrity_verification_json": true
+      }
+    },
+    {
+      "filename": "game_helper.dll",
+      "status": "cleaned",
+      "risk_level": 12,
+      "actions_taken": [
+        "backup",
+        "NOP_patch"
+      ],
+      "final_file": "sanitized_game_helper.dll",
+      "checks": {
+        "sanitized_exists": true,
+        "backup_exists": true,
+        "quarantine_exists": true,
+        "backup_read_only": true,
+        "classification_json": true,
+        "final_report_json": true,
+        "surgery_report_json": true,
+        "integrity_verification_json": true
+      }
+    },
+    {
+      "filename": "game_loader.dll",
+      "status": "cleaned",
+      "risk_level": 10,
+      "actions_taken": [
+        "backup",
+        "NOP_patch"
+      ],
+      "final_file": "sanitized_game_loader.dll",
+      "checks": {
+        "sanitized_exists": true,
+        "backup_exists": true,
+        "quarantine_exists": true,
+        "backup_read_only": true,
+        "classification_json": true,
+        "final_report_json": true,
+        "surgery_report_json": true,
+        "integrity_verification_json": true
+      }
+    },
+    {
+      "filename": "miner.exe",
+      "status": "cleaned",
+      "risk_level": 15,
+      "actions_taken": [
+        "backup",
+        "NOP_patch"
+      ],
+      "final_file": "sanitized_miner.exe",
+      "checks": {
+        "sanitized_exists": true,
+        "backup_exists": true,
+        "quarantine_exists": true,
+        "backup_read_only": true,
+        "classification_json": true,
+        "final_report_json": true,
+        "surgery_report_json": true,
+        "integrity_verification_json": true
+      }
+    }
+  ]
+}

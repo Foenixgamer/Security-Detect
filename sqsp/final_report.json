@@ -1,0 +1,62 @@
+{
+  "report_version": "1.0",
+  "timestamp": "2026-09-06T14:07:12.568934",
+  "summary": {
+    "total_components": 2,
+    "executables": 1,
+    "scripts": 1,
+    "others": 0,
+    "risk_distribution": {
+      "bajo": 1,
+      "medio": 1,
+      "alto": 0
+    }
+  },
+  "components": [
+    {
+      "component": {
+        "path": "app.exe",
+        "type": "executable",
+        "size": 1024
+      },
+      "dynamic_analysis": {
+        "component": "app.exe",
+        "execution_time": 1.2,
+        "exit_code": 0
+      },
+      "vulnerabilities": {
+        "component": "app.exe",
+        "vulnerabilities": [
+          "No firmado"
+        ],
+        "risk_level": "medio"
+      }
+    },
+    {
+      "component": {
+        "path": "script.py",
+        "type": "script",
+        "size": 512
+      },
+      "dynamic_analysis": {
+        "component": "script.py",
+        "execution_time": 0.5,
+        "exit_code": 0
+      },
+      "vulnerabilities": {
+        "component": "script.py",
+        "vulnerabilities": [],
+        "risk_level": "bajo"
+      }
+    }
+  ],
+  "vulnerabilities": [
+    {
+      "component": "app.exe",
+      "risk_level": "medio",
+      "issues": [
+        "No firmado"
+      ]
+    }
+  ]
+}

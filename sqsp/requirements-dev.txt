@@ -1,0 +1,8 @@
+# Dependencias de desarrollo (tests y empaquetado)
+pytest>=7.0
+pyinstaller>=6.0
+
+# Capacidades opcionales de análisis (ver requirements.txt)
+# pefile
+# yara-python
+# PyYAML

@@ -1,0 +1,11 @@
+# SQS funciona al 100% con la biblioteca estándar de Python (sin dependencias).
+#
+# Dependencias OPCIONALES para capacidades extendidas. Instala solo lo que
+# necesites, por ejemplo:
+#   pip install pefile yara-python PyYAML
+#
+#   pefile        -> enriquece el análisis de PE (Tipos de sección, imports,
+#                    características, directorio de seguridad) en la Capa 2.
+#   lief          -> lectura/escritura de binarios PE/ELF/Mach-O (futuro).
+#   yara-python   -> escaneo de firmas desde rules/*.yara en la Capa 2.
+#   PyYAML        -> carga de reglas de la Capa 4 en formato YAML.

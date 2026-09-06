@@ -1,0 +1,635 @@
+{
+  "timestamp": "2026-09-04T19:01:10.839824",
+  "input_file": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\test_synth_module.exe",
+  "output_directory": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\final_package_20260904_190110",
+  "processing_reports": {
+    "classification": {
+      "timestamp": "2026-09-04T19:01:10.764303",
+      "temp_directory": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\temp_20260904_190110",
+      "verdict": "malicioso",
+      "zone": "malicioso",
+      "risk_score": 19,
+      "threats_found": [
+        "5 string(s) sospechoso(s)",
+        "2 import(s) sospechoso(s)",
+        "No se pudo ejecutar en sandbox: [WinError 193] %1 no es una aplicaci\u00f3n Win32 v\u00e1lida",
+        "Regla 'Process_Injection_API' (severidad high)",
+        "Regla 'AntiAnalysis_Import' (severidad medium)",
+        "Regla 'Persistence_String' (severidad medium)",
+        "Regla 'Lateral_Movement_Indicator' (severidad medium)"
+      ],
+      "notes": [],
+      "weights": {
+        "executable": 2,
+        "sandbox_error": 5,
+        "network_activity": 3,
+        "filesystem_change": 3,
+        "suspicious_string": 1,
+        "suspicious_import": 2,
+        "packed_high_entropy": 3,
+        "installer_packed": 2,
+        "known_malicious": 10
+      },
+      "thresholds": {
+        "malicious": 10,
+        "suspicious": 5
+      },
+      "rules_matched": [
+        "Process_Injection_API",
+        "AntiAnalysis_Import",
+        "Persistence_String",
+        "Lateral_Movement_Indicator"
+      ],
+      "rules_risk_added": 9,
+      "static_analysis": {
+        "timestamp": "2026-09-04T19:01:10.725313",
+        "file_path": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\test_synth_module.exe",
+        "mime_type": "application/x-dosexec",
+        "size_bytes": 2336,
+        "is_executable": true,
+        "permissions": "777",
+        "static_analysis": {
+          "file_signature": "PE",
+          "architecture": "x86 (i386)",
+          "compiled_with": "PE32",
+          "sections": [
+            {
+              "name": ".idata",
+              "virtual_size": 512,
+              "virtual_address": "0x1000",
+              "size_of_raw_data": 512,
+              "pointer_to_raw_data": 512,
+              "offset": 512,
+              "size": 512
+            }
+          ],
+          "entropy": 1.484,
+          "max_block_entropy": 1.484,
+          "entropy_by_section": [
+            {
+              "name": ".idata",
+              "offset": 512,
+              "size": 512,
+              "entropy": 1.079
+            }
+          ],
+          "high_entropy_sections": [],
+          "strings_count": 11,
+          "top_strings": [
+            ".idata",
+            "KERNEL32.dll",
+            "CreateRemoteThread",
+            "IsDebuggerPresent",
+            "[STRINGS]",
+            "# SQS-SYNTHETIC-TEST (inert education payload - NOT REAL MALWARE)",
+            "test_synth_module - componente sospechoso de prueba",
+            "http://synthetic.test.example/agent.exe",
+            "schtasks /create /tn SynthUpdater /tr updater.exe /sc onlogon",
+            "netstat -ano",
+            "reg add HKCU\\Software\\Synthetic /v updater"
+          ],
+          "suspicious_strings_found": [
+            {
+              "string": "CreateRemoteThread",
+              "offset": 642,
+              "pattern": "Inyecci\u00f3n de hilos"
+            },
+            {
+              "string": "http://synthetic.test.example/agent.exe",
+              "offset": 2177,
+              "pattern": "URL (http/https)"
+            },
+            {
+              "string": "schtasks /create /tn SynthUpdater /tr updater.exe /sc onlogon",
+              "offset": 2217,
+              "pattern": "Persistencia (schtasks)"
+            },
+            {
+              "string": "netstat -ano",
+              "offset": 2279,
+              "pattern": "netstat"
+            },
+            {
+              "string": "reg add HKCU\\Software\\Synthetic /v updater",
+              "offset": 2292,
+              "pattern": "Modificaci\u00f3n de registro"
+            }
+          ],
+          "imports": [
+            {
+              "dll": "KERNEL32.dll",
+              "functions": [
+                "CreateRemoteThread",
+                "IsDebuggerPresent"
+              ],
+              "ordinals": 0
+            },
+            {
+              "dll": "dll_1",
+              "functions": [],
+              "ordinals": 0
+            }
+          ],
+          "suspicious_imports": [
+            {
+              "dll": "KERNEL32.dll",
+              "function": "CreateRemoteThread",
+              "reason": "inyecci\u00f3n de hilos"
+            },
+            {
+              "dll": "KERNEL32.dll",
+              "function": "IsDebuggerPresent",
+              "reason": "anti-depuraci\u00f3n"
+            }
+          ],
+          "packer_detected": [],
+          "embedded_pe_candidates": [],
+          "pefile": null,
+          "pefile_error": null,
+          "yara_matches": [],
+          "yara_error": null
+        },
+        "components": [
+          {
+            "id": "main",
+            "name": "test_synth_module.exe",
+            "kind": "PE",
+            "offset": 0,
+            "size": 2336,
+            "entropy": 1.484,
+            "suspicion_score": 5,
+            "reasons": [
+              "es ejecutable",
+              "5 string(s) sospechosos",
+              "2 import(s) sospechosos"
+            ]
+          }
+        ]
+      },
+      "dynamic_analysis": {
+        "timestamp": "2026-09-04T19:01:10.726308",
+        "file_to_execute": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\test_synth_module.exe",
+        "sandbox_id": "sandbox_25325281",
+        "execution_log": [],
+        "network_activity": [],
+        "filesystem_changes": [],
+        "error": "No se pudo ejecutar en sandbox: [WinError 193] %1 no es una aplicaci\u00f3n Win32 v\u00e1lida"
+      },
+      "manifest": {
+        "timestamp": "2026-09-04T19:01:10.722302",
+        "input_file": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\test_synth_module.exe",
+        "size_bytes": 2336,
+        "file_hash": "8ce65853fd05e782efd612a04137c2ab6c7383df61e07365a93a7659ec1cc882",
+        "magic_type": "PE",
+        "reputation": {
+          "status": "unknown",
+          "matched": null
+        },
+        "quarantine": {
+          "path": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\temp_20260904_190110\\quarantine\\test_synth_module.exe",
+          "read_only": true
+        },
+        "temp_directory": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\temp_20260904_190110",
+        "status": "ingested"
+      }
+    },
+    "surgery": {
+      "timestamp": "2026-09-04T19:01:10.785824",
+      "original_file": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\test_synth_module.exe",
+      "sanitized_file": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\temp_20260904_190110\\sanitized_test_synth_module.exe",
+      "backup_file": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\temp_20260904_190110\\backup\\test_synth_module.exe",
+      "actions_taken": [
+        "Backup inmutable creado: C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\temp_20260904_190110\\backup\\test_synth_module.exe",
+        "NOP aplicado en 5 offset(s) (difusi\u00f3n en surgery_log)"
+      ],
+      "surgery_status": "completed",
+      "classification": {
+        "timestamp": "2026-09-04T19:01:10.764303",
+        "temp_directory": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\temp_20260904_190110",
+        "verdict": "malicioso",
+        "zone": "malicioso",
+        "risk_score": 19,
+        "threats_found": [
+          "5 string(s) sospechoso(s)",
+          "2 import(s) sospechoso(s)",
+          "No se pudo ejecutar en sandbox: [WinError 193] %1 no es una aplicaci\u00f3n Win32 v\u00e1lida",
+          "Regla 'Process_Injection_API' (severidad high)",
+          "Regla 'AntiAnalysis_Import' (severidad medium)",
+          "Regla 'Persistence_String' (severidad medium)",
+          "Regla 'Lateral_Movement_Indicator' (severidad medium)"
+        ],
+        "notes": [],
+        "weights": {
+          "executable": 2,
+          "sandbox_error": 5,
+          "network_activity": 3,
+          "filesystem_change": 3,
+          "suspicious_string": 1,
+          "suspicious_import": 2,
+          "packed_high_entropy": 3,
+          "installer_packed": 2,
+          "known_malicious": 10
+        },
+        "thresholds": {
+          "malicious": 10,
+          "suspicious": 5
+        },
+        "rules_matched": [
+          "Process_Injection_API",
+          "AntiAnalysis_Import",
+          "Persistence_String",
+          "Lateral_Movement_Indicator"
+        ],
+        "rules_risk_added": 9,
+        "static_analysis": {
+          "timestamp": "2026-09-04T19:01:10.725313",
+          "file_path": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\test_synth_module.exe",
+          "mime_type": "application/x-dosexec",
+          "size_bytes": 2336,
+          "is_executable": true,
+          "permissions": "777",
+          "static_analysis": {
+            "file_signature": "PE",
+            "architecture": "x86 (i386)",
+            "compiled_with": "PE32",
+            "sections": [
+              {
+                "name": ".idata",
+                "virtual_size": 512,
+                "virtual_address": "0x1000",
+                "size_of_raw_data": 512,
+                "pointer_to_raw_data": 512,
+                "offset": 512,
+                "size": 512
+              }
+            ],
+            "entropy": 1.484,
+            "max_block_entropy": 1.484,
+            "entropy_by_section": [
+              {
+                "name": ".idata",
+                "offset": 512,
+                "size": 512,
+                "entropy": 1.079
+              }
+            ],
+            "high_entropy_sections": [],
+            "strings_count": 11,
+            "top_strings": [
+              ".idata",
+              "KERNEL32.dll",
+              "CreateRemoteThread",
+              "IsDebuggerPresent",
+              "[STRINGS]",
+              "# SQS-SYNTHETIC-TEST (inert education payload - NOT REAL MALWARE)",
+              "test_synth_module - componente sospechoso de prueba",
+              "http://synthetic.test.example/agent.exe",
+              "schtasks /create /tn SynthUpdater /tr updater.exe /sc onlogon",
+              "netstat -ano",
+              "reg add HKCU\\Software\\Synthetic /v updater"
+            ],
+            "suspicious_strings_found": [
+              {
+                "string": "CreateRemoteThread",
+                "offset": 642,
+                "pattern": "Inyecci\u00f3n de hilos"
+              },
+              {
+                "string": "http://synthetic.test.example/agent.exe",
+                "offset": 2177,
+                "pattern": "URL (http/https)"
+              },
+              {
+                "string": "schtasks /create /tn SynthUpdater /tr updater.exe /sc onlogon",
+                "offset": 2217,
+                "pattern": "Persistencia (schtasks)"
+              },
+              {
+                "string": "netstat -ano",
+                "offset": 2279,
+                "pattern": "netstat"
+              },
+              {
+                "string": "reg add HKCU\\Software\\Synthetic /v updater",
+                "offset": 2292,
+                "pattern": "Modificaci\u00f3n de registro"
+              }
+            ],
+            "imports": [
+              {
+                "dll": "KERNEL32.dll",
+                "functions": [
+                  "CreateRemoteThread",
+                  "IsDebuggerPresent"
+                ],
+                "ordinals": 0
+              },
+              {
+                "dll": "dll_1",
+                "functions": [],
+                "ordinals": 0
+              }
+            ],
+            "suspicious_imports": [
+              {
+                "dll": "KERNEL32.dll",
+                "function": "CreateRemoteThread",
+                "reason": "inyecci\u00f3n de hilos"
+              },
+              {
+                "dll": "KERNEL32.dll",
+                "function": "IsDebuggerPresent",
+                "reason": "anti-depuraci\u00f3n"
+              }
+            ],
+            "packer_detected": [],
+            "embedded_pe_candidates": [],
+            "pefile": null,
+            "pefile_error": null,
+            "yara_matches": [],
+            "yara_error": null
+          },
+          "components": [
+            {
+              "id": "main",
+              "name": "test_synth_module.exe",
+              "kind": "PE",
+              "offset": 0,
+              "size": 2336,
+              "entropy": 1.484,
+              "suspicion_score": 5,
+              "reasons": [
+                "es ejecutable",
+                "5 string(s) sospechosos",
+                "2 import(s) sospechosos"
+              ]
+            }
+          ]
+        },
+        "dynamic_analysis": {
+          "timestamp": "2026-09-04T19:01:10.726308",
+          "file_to_execute": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\test_synth_module.exe",
+          "sandbox_id": "sandbox_25325281",
+          "execution_log": [],
+          "network_activity": [],
+          "filesystem_changes": [],
+          "error": "No se pudo ejecutar en sandbox: [WinError 193] %1 no es una aplicaci\u00f3n Win32 v\u00e1lida"
+        },
+        "manifest": {
+          "timestamp": "2026-09-04T19:01:10.722302",
+          "input_file": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\test_synth_module.exe",
+          "size_bytes": 2336,
+          "file_hash": "8ce65853fd05e782efd612a04137c2ab6c7383df61e07365a93a7659ec1cc882",
+          "magic_type": "PE",
+          "reputation": {
+            "status": "unknown",
+            "matched": null
+          },
+          "quarantine": {
+            "path": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\temp_20260904_190110\\quarantine\\test_synth_module.exe",
+            "read_only": true
+          },
+          "temp_directory": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\temp_20260904_190110",
+          "status": "ingested"
+        }
+      }
+    },
+    "verification": {
+      "timestamp": "2026-09-04T19:01:10.795849",
+      "original_file_hash": "8ce65853fd05e782efd612a04137c2ab6c7383df61e07365a93a7659ec1cc882",
+      "sanitized_file_path": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\temp_20260904_190110\\sanitized_test_synth_module.exe",
+      "sanitized_file_hash": "f26123823d3e6a10db4d8e5487599c2bbf6522b52f0407d0c2aa7c133599387a",
+      "verification_status": "failed",
+      "functional_tests": [
+        {
+          "test_name": "RerunInSandbox",
+          "status": "failed",
+          "return_code": null,
+          "output": "No se pudo ejecutar en sandbox: [WinError 193] %1 no es una aplicaci\u00f3n Win32 v\u00e1lida",
+          "duration_seconds": 0.0,
+          "reason": "No se pudo ejecutar en sandbox: [WinError 193] %1 no es una aplicaci\u00f3n Win32 v\u00e1lida"
+        }
+      ],
+      "rerun_dynamic_report": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\temp_20260904_190110\\rerun_dynamic_report.json",
+      "differences_detected": true,
+      "compatibility_report": {},
+      "malicious_behavior_removed": false
+    },
+    "verdict_map": {
+      "timestamp": "2026-09-04T19:01:10.764303",
+      "temp_directory": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\temp_20260904_190110",
+      "verdict": "malicioso",
+      "zone": "malicioso",
+      "risk_score": 19,
+      "decision": null,
+      "notes": [],
+      "components": [
+        {
+          "id": "main",
+          "name": "test_synth_module.exe",
+          "kind": "PE",
+          "offset": 0,
+          "verdict": "malicioso",
+          "action": "patch",
+          "patch_offsets": [
+            {
+              "offset": 642,
+              "size": 18,
+              "note": "Inyecci\u00f3n de hilos",
+              "string": "CreateRemoteThread"
+            },
+            {
+              "offset": 2177,
+              "size": 39,
+              "note": "URL (http/https)",
+              "string": "http://synthetic.test.example/agent.exe"
+            },
+            {
+              "offset": 2217,
+              "size": 61,
+              "note": "Persistencia (schtasks)",
+              "string": "schtasks /create /tn SynthUpdater /tr up"
+            },
+            {
+              "offset": 2279,
+              "size": 12,
+              "note": "netstat",
+              "string": "netstat -ano"
+            },
+            {
+              "offset": 2292,
+              "size": 42,
+              "note": "Modificaci\u00f3n de registro",
+              "string": "reg add HKCU\\Software\\Synthetic /v updat"
+            }
+          ]
+        }
+      ],
+      "actions": [
+        {
+          "type": "patch",
+          "offset": 642,
+          "size": 18,
+          "note": "Inyecci\u00f3n de hilos",
+          "string": "CreateRemoteThread"
+        },
+        {
+          "type": "patch",
+          "offset": 2177,
+          "size": 39,
+          "note": "URL (http/https)",
+          "string": "http://synthetic.test.example/agent.exe"
+        },
+        {
+          "type": "patch",
+          "offset": 2217,
+          "size": 61,
+          "note": "Persistencia (schtasks)",
+          "string": "schtasks /create /tn SynthUpdater /tr up"
+        },
+        {
+          "type": "patch",
+          "offset": 2279,
+          "size": 12,
+          "note": "netstat",
+          "string": "netstat -ano"
+        },
+        {
+          "type": "patch",
+          "offset": 2292,
+          "size": 42,
+          "note": "Modificaci\u00f3n de registro",
+          "string": "reg add HKCU\\Software\\Synthetic /v updat"
+        }
+      ]
+    },
+    "surgery_log": {
+      "timestamp": "2026-09-04T19:01:10.784837",
+      "original_file": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\test_synth_module.exe",
+      "backup_file": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\temp_20260904_190110\\backup\\test_synth_module.exe",
+      "sanitized_file": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\temp_20260904_190110\\sanitized_test_synth_module.exe",
+      "patches": [
+        {
+          "offset": 642,
+          "size": 18,
+          "original_hex": "43726561746552656d6f7465546872656164",
+          "new_hex": "909090909090909090909090909090909090",
+          "type": "nop_patch",
+          "note": "Inyecci\u00f3n de hilos",
+          "string": "CreateRemoteThread"
+        },
+        {
+          "offset": 2177,
+          "size": 39,
+          "original_hex": "687474703a2f2f73796e7468657469632e746573742e6578616d706c652f6167656e742e657865",
+          "new_hex": "909090909090909090909090909090909090909090909090909090909090909090909090909090",
+          "type": "nop_patch",
+          "note": "URL (http/https)",
+          "string": "http://synthetic.test.example/agent.exe"
+        },
+        {
+          "offset": 2217,
+          "size": 61,
+          "original_hex": "7363687461736b73202f637265617465202f746e2053796e746855706461746572202f747220757064617465722e657865202f7363206f6e6c6f676f6e",
+          "new_hex": "90909090909090909090909090909090909090909090909090909090909090909090909090909090909090909090909090909090909090909090909090",
+          "type": "nop_patch",
+          "note": "Persistencia (schtasks)",
+          "string": "schtasks /create /tn SynthUpdater /tr up"
+        },
+        {
+          "offset": 2279,
+          "size": 12,
+          "original_hex": "6e657473746174202d616e6f",
+          "new_hex": "909090909090909090909090",
+          "type": "nop_patch",
+          "note": "netstat",
+          "string": "netstat -ano"
+        },
+        {
+          "offset": 2292,
+          "size": 42,
+          "original_hex": "7265672061646420484b43555c536f6674776172655c53796e746865746963202f762075706461746572",
+          "new_hex": "909090909090909090909090909090909090909090909090909090909090909090909090909090909090",
+          "type": "nop_patch",
+          "note": "Modificaci\u00f3n de registro",
+          "string": "reg add HKCU\\Software\\Synthetic /v updat"
+        }
+      ],
+      "removed_components": [],
+      "surgery_status": "completed"
+    },
+    "manifest": {
+      "timestamp": "2026-09-04T19:01:10.722302",
+      "input_file": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\test_synth_module.exe",
+      "size_bytes": 2336,
+      "file_hash": "8ce65853fd05e782efd612a04137c2ab6c7383df61e07365a93a7659ec1cc882",
+      "magic_type": "PE",
+      "reputation": {
+        "status": "unknown",
+        "matched": null
+      },
+      "quarantine": {
+        "path": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\temp_20260904_190110\\quarantine\\test_synth_module.exe",
+        "read_only": true
+      },
+      "temp_directory": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\temp_20260904_190110",
+      "status": "ingested"
+    },
+    "final_report": {
+      "timestamp": "2026-09-04T19:01:10.809824",
+      "input_file": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\test_synth_module.exe",
+      "temp_directory": "C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\temp_20260904_190110",
+      "verdict": "malicioso",
+      "zone": "malicioso",
+      "risk_score": 19,
+      "surgery_status": "completed",
+      "verification_status": "failed",
+      "malicious_behavior_removed": false,
+      "functionality_loss_risk": "alta",
+      "summary": [
+        "Archivo original: C:\\AI-Security\\sqs_analysis_lab\\smoke_output\\test_synth_module.exe",
+        "Veredicto: malicioso (zona malicioso, riesgo 19)",
+        "Estado de cirug\u00eda: completed",
+        "Verificaci\u00f3n funcional: failed",
+        "Riesgo de p\u00e9rdida funcional: alta"
+      ]
+    },
+    "rules_report": {
+      "timestamp": "2026-09-04T19:01:10.764303",
+      "rules_evaluated": 6,
+      "risk_added": 9,
+      "matched": [
+        {
+          "name": "Process_Injection_API",
+          "severity": "high",
+          "base_add": 3,
+          "description": "Importa la API de inyecci\u00f3n de hilos CreateRemoteThread.",
+          "reference": "MITRE ATT&CK T1055"
+        },
+        {
+          "name": "AntiAnalysis_Import",
+          "severity": "medium",
+          "base_add": 2,
+          "description": "APIs anti-depuraci\u00f3n/an\u00e1lisis (IsDebuggerPresent y similares).",
+          "reference": "MITRE ATT&CK T1622"
+        },
+        {
+          "name": "Persistence_String",
+          "severity": "medium",
+          "base_add": 2,
+          "description": "Indicadores de persistencia (schtasks / registro) en strings.",
+          "reference": "MITRE ATT&CK T1053"
+        },
+        {
+          "name": "Lateral_Movement_Indicator",
+          "severity": "medium",
+          "base_add": 2,
+          "description": "Strings de administraci\u00f3n remota/netstat en el binario.",
+          "reference": "MITRE ATT&CK T1021"
+        }
+      ],
+      "error": null
+    }
+  },
+  "final_status": "completed"
+}

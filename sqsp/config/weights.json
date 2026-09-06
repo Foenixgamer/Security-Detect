@@ -1,0 +1,17 @@
+{
+  "weights": {
+    "executable": 2,
+    "sandbox_error": 5,
+    "network_activity": 3,
+    "filesystem_change": 3,
+    "suspicious_string": 1,
+    "suspicious_import": 2,
+    "packed_high_entropy": 3,
+    "installer_packed": 2,
+    "known_malicious": 10
+  },
+  "thresholds": {
+    "malicious": 10,
+    "suspicious": 5
+  }
+}
