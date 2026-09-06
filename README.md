@@ -1,6 +1,11 @@
 # Security-Detect
 
-Pipeline de analisis y saneamiento de software (SQS - Sanitizador Quirurgico de Software).
+Sistema de deteccion y neutralizacion de software malicioso. Su objetivo es
+proteger los sistemas de archivos: identifica contenido potencialmente danino
+en archivos y aplicaciones, permite aislarlo, sanearlo de forma quirurgica
+(NOP sobre las rutas de codigo malicioso localizadas) y verificar la integridad
+del resultado, de modo que un equipo pueda volver a utilizarse sin el riesgo
+que el archivo original representaba.
 
 ## Estructura
 
@@ -52,9 +57,3 @@ Configurar desde la app o:
 from vt_connector import save_api_key
 save_api_key("tu-api-key")
 ```
-
-## Aviso
-
-Este proyecto es educativo y debe usarse exclusivamente en entornos
-autorizados. Las muestras inertes del laboratorio son archivos falsos
-con extensiones PE y datos sinteticos.
